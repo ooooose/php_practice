@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: ./dockerfile/php/Dockerfile
+      dockerfile: ./docker/php/Dockerfile
     volumes:
       - ./src:/app
   nginx:
@@ -21,7 +21,7 @@ services:
   db:
     build:
       context: .
-      dockerfile: ./dockerfile/db/Dockerfile
+      dockerfile: ./docker/db/Dockerfile
     ports:
       - 3306:3306
     environment:

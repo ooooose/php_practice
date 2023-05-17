@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./dockerfile/php/Dockerfile
+    volumes:
+      - ./src:/app
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - ./src/:/app
+    working_dir: /var/www
+    depends_on:
+      - app
+  db:
+    build:
+      context: .
+      dockerfile: ./dockerfile/db/Dockerfile
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: training
+      MYSQL_USER: training-user
+      MYSQL_PAsSWORD: password
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - mysql-volume:/var/lib/mysql
+volumes:
+  mysql-volume:

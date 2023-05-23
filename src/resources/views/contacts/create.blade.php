@@ -15,6 +15,15 @@
                 <div class="text-center w-full mb-12">
                     <h1 class="sm:text-3xl text-2xl title-font">お問合せ</h1>
                 </div>
+                @if ($errors->any())
+                    <div class='text-red-500 mx-auto text-center'>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form method="post" action="{{ route('store') }}">
                 @csrf
                 <div class="lg:w-1/2 md:w-2/3 mx-auto">

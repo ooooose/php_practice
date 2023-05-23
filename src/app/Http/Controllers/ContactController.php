@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Department;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -13,7 +15,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('contacts.index');
+        $contacts = Contact::select('department_id', 'name', 'email', 'content')->get();
+        return view('contacts.index', compact('contacts'));
     }
 
     /**
@@ -23,7 +26,9 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        // セレクトボックス用に渡す変数を用意。
+        $departments = Department::select('id', 'name')->get();
+        return view('contacts.create', compact('departments'));
     }
 
     /**
@@ -34,7 +39,16 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Contact::create([
+            'department_id' => $request->department_id, 
+            'name' => $request->name, 
+            'email' => $request->email, 
+            'content' => $request->content, 
+            'age' => $request->age, 
+            'gender' => $request->gender, 
+        ]);
+
+        return redirect()->route('index');
     }
 
     /**

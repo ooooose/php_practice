@@ -20,8 +20,9 @@ use App\Http\Controllers\ContactController;
 Route::prefix('contacts')
     ->controller(ContactController::class)
     ->group(function() {
-        Route::get('/', 'index')->name('contacts.index');
-        Route::post('/', 'store')->name('contacts.store');
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/create', 'store')->name('store');
     });
 
 Route::get('/', function () {

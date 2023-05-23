@@ -15,6 +15,15 @@
                 <div class="text-center w-full mb-12">
                     <h1 class="sm:text-3xl text-2xl title-font">お問合せ</h1>
                 </div>
+                @if ($errors->any())
+                    <div class='text-red-500 mx-auto text-center'>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form method="post" action="{{ route('store') }}">
                 @csrf
                 <div class="lg:w-1/2 md:w-2/3 mx-auto">
@@ -52,14 +61,14 @@
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="age">
                             年齢
                         </label>
-                        <input class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" id="age" type="text">
+                        <input class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" id="age" name="age" type="text">
                     </div>
                     <div class="p-2 w-full">
                     <div class="relative">
                         <label for="gender" class="leading-7 text-sm text-gray-600">性別</label><br />
-                        <input type="radio" name="gender" value="0" >男性
-                        <input type="radio" name="gender" value="1" >女性
-                        <input type="radio" name="gender" value="2" >未回答
+                        <input type="radio" name="gender" value="1" >男性
+                        <input type="radio" name="gender" value="2" >女性
+                        <input type="radio" name="gender" value="3" >未回答
                     </div>
                     </div>
                     <div class="p-2 w-full">

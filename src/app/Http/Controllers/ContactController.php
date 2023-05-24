@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ContactRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Contact;
@@ -9,6 +10,14 @@ use App\Http\Requests\StoreContactRequest;
 
 class ContactController extends Controller
 {
+    private ContactRepositoryInterface $contactRepository;
+
+    public function __construct(ContactRepositoryInterface $contactRepository)
+    {
+        $this->contactRepository = $contactRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +25,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::select('department_id', 'name', 'email', 'content')->get();
+        $contacts = $this->contactRepository->getContacts();
         return view('contacts.index', compact('contacts'));
     }
 
@@ -28,7 +37,7 @@ class ContactController extends Controller
     public function create()
     {
         // セレクトボックス用に渡す変数を用意。
-        $departments = Department::select('id', 'name')->get();
+        $departments = $this->contactRepository->getDepartments();
         return view('contacts.create', compact('departments'));
     }
 

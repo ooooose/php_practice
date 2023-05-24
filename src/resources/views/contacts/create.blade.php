@@ -34,7 +34,7 @@
                         <select name='department_id'>
                             <option value="">選択してください</option>
                             @foreach ($departments as $department)
-                                <option value="{{ $department->id }}" >{{ $department->name }}</option>
+                                <option value="{{ $department->id }}" {{ old('department_id') == $loop->iteration ? 'selected' : '' }}>{{ $department->name }}</option>
                             @endforeach
                         </select>
                     </div>

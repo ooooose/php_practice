@@ -18,4 +18,16 @@ class ContactRepository implements ContactRepositoryInterface
         return Contact::select('department_id', 'name', 'email', 'content')->get();
     }
 
+    public function createContact(int $department_id, string $name, string $email, string $content, int $age, int $gender)
+    {
+        return Contact::create([
+            'department_id' => $department_id,
+            'name' => $name,
+            'email' => $email,
+            'content' => $content,
+            'age' => $age,
+            'gender' => $gender,
+        ]);
+    }
+
 }

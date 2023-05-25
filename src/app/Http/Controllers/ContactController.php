@@ -47,14 +47,9 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        Contact::create([
-            'department_id' => $request->department_id, 
-            'name' => $request->name, 
-            'email' => $request->email, 
-            'content' => $request->content, 
-            'age' => $request->age, 
-            'gender' => $request->gender, 
-        ]);
+        $this->contactRepository->createContact(
+            $request->department_id, $request->name, $request->email, $request->content, $request->age, $request->gender
+        );
 
         return redirect()->route('index');
     }

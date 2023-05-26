@@ -2,61 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\ContactRepositoryInterface;
+use App\Services\ContactServiceInterface;
 use Illuminate\Http\Request;
-use App\Models\Department;
-use App\Models\Contact;
 use App\Http\Requests\StoreContactRequest;
 
 class ContactController extends Controller
 {
-    private ContactRepositoryInterface $contactRepository;
+    private ContactServiceInterface $contactService;
 
-    public function __construct(ContactRepositoryInterface $contactRepository)
+    public function __construct(ContactServiceInterface $contactService)
     {
-        $this->contactRepository = $contactRepository;
+        $this->contactService = $contactService;
     }
 
 
     /**
-     * Display a listing of the resource.
+     * お問合せの一覧を取得するメソッドです。
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $contacts = $this->contactRepository->getContacts();
+        $contacts = $this->contactService->getContacts();
         return view('contacts.index', compact('contacts'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * お問合せフォームを表示するためのメソッドです。
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
         // セレクトボックス用に渡す変数を用意。
-        $departments = $this->contactRepository->getDepartments();
+        $departments = $this->contactService->getDepartments();
         return view('contacts.create', compact('departments'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * お問合せフォームに入力したデータを保存するメソッドです。
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreContactRequest $request)
     {
-        Contact::create([
-            'department_id' => $request->department_id, 
-            'name' => $request->name, 
-            'email' => $request->email, 
-            'content' => $request->content, 
-            'age' => $request->age, 
-            'gender' => $request->gender, 
-        ]);
+        $this->contactService->createContact(
+            $request->department_id, $request->name, $request->email, $request->content, $request->age, $request->gender
+        );
 
         return redirect()->route('index');
     }

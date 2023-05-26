@@ -11,12 +11,12 @@ use App\Repositories\ContactRepositoryInterface;
 class ContactService implements ContactServiceInterface
 {
 
-    private $contact_repository;
+    private $contactRepository;
 
     public function __construct(
-        ContactRepositoryInterface $contact_repository
+        ContactRepositoryInterface $contactRepository
     ) {
-        $this->contact_repository = $contact_repository;
+        $this->contactRepository = $contactRepository;
     }
 
     /**
@@ -24,7 +24,7 @@ class ContactService implements ContactServiceInterface
      */
     public function getDepartments()
     {
-        return $this->contact_repository->getDepartmentsIds();
+        return $this->contactRepository->getDepartmentsIds();
     }
 
     /**
@@ -32,7 +32,7 @@ class ContactService implements ContactServiceInterface
      */
     public function getContacts()
     {
-        return $this->contact_repository->getContactsColumns();
+        return $this->contactRepository->getContactsColumns();
     }
 
     /**
@@ -40,7 +40,7 @@ class ContactService implements ContactServiceInterface
      */
     public function createContact(int $department_id, string $name, string $email, string $content, int $age, int $gender): Contact
     {
-        return $this->contact_repository->createContactInstance($department_id, $name, $email, $content, $age, $gender);
+        return $this->contactRepository->createContactInstance($department_id, $name, $email, $content, $age, $gender);
     }
 
     /**

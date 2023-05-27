@@ -26,7 +26,8 @@ interface ContactServiceInterface
     public function getContacts();
 
     /**
-     * ユーザーを作成します
+     * お問合せ(Contact)を作成します
+     *
      * @param int $department_id 部署ID
      * @param string $name ユーザー名
      * @param string $email メールアドレス

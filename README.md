@@ -6,14 +6,11 @@
 `contacts#index`<br />
 作成したお問合せが一覧表示される画面として実装。<br />
 表示されるカラムは`department_id`,`name`,`gender`,`email`,`content`の５種類。<br />
-<hr />
 [![Image from Gyazo](https://i.gyazo.com/cd479d7af0f34c904dad7c1742f3b911.png)](https://gyazo.com/cd479d7af0f34c904dad7c1742f3b911)
 `contacts#create`<br />
 お問合せ作成画面として作成。<br />
-<hr />
 [![Image from Gyazo](https://i.gyazo.com/ce93d225b94df606c7d6f9d6b0d5d7b2.png)](https://gyazo.com/ce93d225b94df606c7d6f9d6b0d5d7b2)
 以下バリデーションも実装しており、各フォームにはOldヘルパーを使用している。<br />
-<hr />
 [![Image from Gyazo](https://i.gyazo.com/df391058f838d5f9812ca0367df613b2.png)](https://gyazo.com/df391058f838d5f9812ca0367df613b2)
 
 ## チェック事項

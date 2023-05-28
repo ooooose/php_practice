@@ -16,7 +16,6 @@ class ContactController extends Controller
         $this->contactService = $contactService;
     }
 
-
     /**
      * お問合せの一覧を取得するメソッドです。
      *
@@ -25,7 +24,8 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = $this->contactService->getContacts();
-        return view('contacts.index', compact('contacts'));
+        $genders = $this->contactService->checkGenders($contacts);
+        return view('contacts.index', compact('contacts', 'genders'));
     }
 
     /**

@@ -23,7 +23,7 @@ class ContactRepository implements ContactRepositoryInterface
      */
     public function getContactsColumns()
     {
-        return Contact::select('department_id', 'name', 'email', 'content')->get();
+        return Contact::select('department_id', 'name', 'gender','email', 'content')->get();
     }
 
     /**

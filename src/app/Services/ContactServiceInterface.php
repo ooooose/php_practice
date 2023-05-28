@@ -26,7 +26,8 @@ interface ContactServiceInterface
     public function getContacts();
 
     /**
-     * ユーザーを作成します
+     * お問合せ(Contact)を作成します
+     *
      * @param int $department_id 部署ID
      * @param string $name ユーザー名
      * @param string $email メールアドレス
@@ -40,8 +41,10 @@ interface ContactServiceInterface
     /**
      * 性別の表示を「1,2,3」から「男性,女性,未回答」に変更する。
      *
-     * @return string
+     * @param $contacts 全お問合せ
+     *
+     * @return array
      */
-    public function checkGender(Contact $contact): string;
+    public function checkGenders($contacts): array;
 
 }

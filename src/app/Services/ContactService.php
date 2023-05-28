@@ -46,16 +46,24 @@ class ContactService implements ContactServiceInterface
     /**
      * @inheritDoc
      */
-    public function checkGender(Contact $contact): string
+    public function checkGenders($contacts): array
     {
-        if($contact->gender === 1) {
-            $gender = '男性'; 
-        } elseif($contact->gender === 2) {
-            $gender = '女性'; 
-        } elseif($contact->gender === 3) {
-            $gender = '未回答';
+        $genders = [];
+
+        foreach($contacts as $contact)
+        {
+            if ($contact->gender == 1) {
+                array_push($genders, '男性');
+            } 
+            if ($contact->gender == 2) {
+                array_push($genders, '女性');
+            } 
+            if ($contact->gender == 3) {
+                array_push($genders, '未回答');
+            } 
         }
-    return $gender;
+        
+        return $genders;
     }           
 
 }

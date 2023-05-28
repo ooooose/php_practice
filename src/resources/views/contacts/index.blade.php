@@ -28,6 +28,7 @@
                                 <tr>
                                     <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">お問合せ部署名</th>
                                     <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">氏名</th>
+                                    <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">性別</th>
                                     <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">メールアドレス</th>
                                     <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">お問合せ内容</th>
                                 </tr>
@@ -37,6 +38,7 @@
                                     <tr>
                                         <td class="border-gray-200 px-4 py-3">{{ $contact->department->name }}</td>
                                         <td class="border-gray-200 px-4 py-3">{{ $contact->name }}</td>
+                                        <td class="border-gray-200 px-4 py-3">{{ $genders[$loop->index] }}</td>
                                         <td class="border-gray-200 px-4 py-3">{{ $contact->email }}</td>
                                         <td class="border-gray-200 px-4 py-3 text-lg text-gray-900">{{ $contact->content }}</td>
                                     </tr>

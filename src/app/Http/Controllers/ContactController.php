@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\ContactServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreContactRequest;
 
 class ContactController extends Controller
@@ -15,7 +16,6 @@ class ContactController extends Controller
         $this->contactService = $contactService;
     }
 
-
     /**
      * お問合せの一覧を取得するメソッドです。
      *
@@ -24,7 +24,8 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = $this->contactService->getContacts();
-        return view('contacts.index', compact('contacts'));
+        $genders = $this->contactService->checkGenders($contacts);
+        return view('contacts.index', compact('contacts', 'genders'));
     }
 
     /**
@@ -47,9 +48,11 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        $this->contactService->createContact(
-            $request->department_id, $request->name, $request->email, $request->content, $request->age, $request->gender
-        );
+        DB::transaction(function () use ($request) {
+            $this->contactService->createContact(
+                $request->department_id, $request->name, $request->email, $request->content, $request->age, $request->gender
+            );
+        });
 
         return redirect()->route('index');
     }

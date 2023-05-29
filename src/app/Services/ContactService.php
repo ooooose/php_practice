@@ -7,6 +7,7 @@ use App\Models\Contact;
 use App\Services\ContactServiceInterface;
 use App\Repositories\ContactRepository;
 use App\Repositories\ContactRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class ContactService implements ContactServiceInterface
 {
@@ -22,7 +23,7 @@ class ContactService implements ContactServiceInterface
     /**
      * @inheritDoc
      */
-    public function getDepartments()
+    public function getDepartments(): Collection
     {
         return $this->contactRepository->getDepartmentsIds();
     }
@@ -30,7 +31,7 @@ class ContactService implements ContactServiceInterface
     /**
      * @inheritDoc
      */
-    public function getContacts()
+    public function getContacts(): Collection
     {
         return $this->contactRepository->getContactsColumns();
     }
@@ -52,13 +53,15 @@ class ContactService implements ContactServiceInterface
 
         foreach($contacts as $contact)
         {
-            if ($contact->gender == 1) {
+            if ($contact->gender === 1) {
                 array_push($genders, '男性');
             } 
-            if ($contact->gender == 2) {
+
+            if ($contact->gender === 2) {
                 array_push($genders, '女性');
             } 
-            if ($contact->gender == 3) {
+
+            if ($contact->gender === 3) {
                 array_push($genders, '未回答');
             } 
         }

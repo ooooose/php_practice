@@ -6,6 +6,7 @@ namespace App\Repositories;
 use App\Repositories\ContactRepositoryInterface;
 use App\Models\Department;
 use App\Models\Contact;
+use Illuminate\Database\Eloquent\Collection;
 
 class ContactRepository implements ContactRepositoryInterface
 {
@@ -13,7 +14,7 @@ class ContactRepository implements ContactRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getDepartmentsIds()
+    public function getDepartmentsIds(): Collection
     {
         return Department::select('id', 'name')->get();
     }
@@ -21,7 +22,7 @@ class ContactRepository implements ContactRepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getContactsColumns()
+    public function getContactsColumns(): Collection
     {
         return Contact::select('department_id', 'name', 'gender','email', 'content')->get();
     }

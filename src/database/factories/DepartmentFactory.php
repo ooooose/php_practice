@@ -15,7 +15,7 @@ class DepartmentFactory extends Factory
     public function definition()
     {
         return [
-            'name' => sprintf('部署{%d}', self::$sequence++),
+            'name' => sprintf('部署%d', self::$sequence++),
             'manager_name' => $this->faker->name,
         ];
     }

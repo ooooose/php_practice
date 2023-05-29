@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\Contact;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Interface ContactService
@@ -16,14 +17,14 @@ interface ContactServiceInterface
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getDepartments();
+    public function getDepartments(): Collection;
 
     /**
      * すべてのお問合せを取得する。
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getContacts();
+    public function getContacts(): Collection;
 
     /**
      * お問合せ(Contact)を作成します

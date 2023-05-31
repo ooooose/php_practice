@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -50,7 +51,12 @@ class ContactController extends Controller
     {
         DB::transaction(function () use ($request) {
             $this->contactService->createContact(
-                $request->department_id, $request->name, $request->email, $request->content, $request->age, $request->gender
+                (int) $request->department_id, 
+                $request->name, 
+                $request->email, 
+                $request->content, 
+                (int) $request->age, 
+                (int) $request->gender
             );
         });
 

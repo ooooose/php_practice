@@ -44,7 +44,7 @@ interface ContactServiceInterface
      *
      * @param $contacts 全お問合せ
      *
-     * @return array
+     * @return array $genders 性別
      */
     public function checkGenders($contacts): array;
 

@@ -41,7 +41,7 @@ class StoreContactRequest extends FormRequest
      */
     public function getDepartmentId(): int
     {
-        return $this->input('department_id');
+        return (int) $this->input('department_id');
     }
 
     /**
@@ -64,7 +64,6 @@ class StoreContactRequest extends FormRequest
 
     /**
      * お問合せ内容
-     * 
      * @return string
      */
     public function getContents(): string
@@ -78,7 +77,7 @@ class StoreContactRequest extends FormRequest
      */
     public function getAge(): int
     {
-        return $this->input('age');
+        return (int) $this->input('age');
     }
 
     /**
@@ -87,7 +86,7 @@ class StoreContactRequest extends FormRequest
      */
     public function getGender(): int
     {
-        return $this->input('gender');
+        return (int) $this->input('gender');
     }
 
 }

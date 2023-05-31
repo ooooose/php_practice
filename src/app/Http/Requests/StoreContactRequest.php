@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
@@ -33,4 +34,60 @@ class StoreContactRequest extends FormRequest
             'gender' => ['required', 'integer', Rule::in([1, 2, 3])],
         ];
     }
+
+    /**
+     * お問合せ部署
+     * @return int
+     */
+    public function getDepartmentId(): int
+    {
+        return $this->input('department_id');
+    }
+
+    /**
+     * お名前
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->input('name');
+    }
+
+    /**
+     * メールアドレス
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->input('email');
+    }
+
+    /**
+     * お問合せ内容
+     * 
+     * @return string
+     */
+    public function getContents(): string
+    {
+        return $this->input('content');
+    }
+
+    /**
+     * 年齢
+     * @return int
+     */
+    public function getAge(): int
+    {
+        return $this->input('age');
+    }
+
+    /**
+     * 性別
+     * @return int
+     */
+    public function getGender(): int
+    {
+        return $this->input('gender');
+    }
+
 }
